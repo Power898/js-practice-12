@@ -242,8 +242,8 @@ console.log(
  * keys - Масив ключів, які перевіряємо.
  * Повертаємо - Масив булевих значень: true, якщо ключ присутній у словнику, та false, якщо ключ відсутній.
  */
-function checkPresence(dictionary, keys) {let presence=[]; keys.forEach((key)=>{if((dictionary.get(key))!== "underfined"){return presence.push("true")}
-else{presence.push("false")} }); return presence;
+function checkPresence(dictionary, keys) {let presence=[]; keys.forEach((key)=>{presence.push(dictionary.has(key));})
+return presence;
  
   // Створюємо порожній масив для збереження результатів перевірки
   // Використовуємо цикл forEach для перебору масиву ключів
@@ -274,7 +274,7 @@ console.log(
  */
 function getFilteredDictionarySize(dictionary, filter) {let filteredDictionary = new Map();  
   for (let [key, value] of dictionary.entries()) 
-  {if (filter) { return filteredDictionary.set(key, value);}} console.log(filteredDictionary.size); }
+  {if (filter(key,value)) { filteredDictionary.set(key, value);}} return filteredDictionary.size; }
 
 
 // Повертаємо розмір фільтрованого словника, використовуючи властивість 
